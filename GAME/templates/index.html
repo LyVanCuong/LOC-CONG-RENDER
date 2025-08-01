@@ -1,0 +1,37 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ứng Dụng Lọc Dữ Liệu Sinh Viên</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-primary text-white">
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">📄 HỆ THỐNG LỌC CHẤM CÔNG SINH VIÊN</h2>
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="alert alert-warning">
+            {{ messages[0] }}
+        </div>
+        {% endif %}
+        {% endwith %}
+
+        <form action="/upload" method="post" enctype="multipart/form-data" class="bg-light text-dark p-4 rounded">
+            <div class="mb-3">
+                <label class="form-label">📌 File Danh Sách Sinh Viên (.xlsx)</label>
+                <input class="form-control" type="file" name="file_sv" accept=".xlsx" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">📌 File Dữ Liệu Công (.xlsx)</label>
+                <input class="form-control" type="file" name="file_cong" accept=".xlsx" required>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-success px-4 py-2">▶ Lọc và Tải Kết Quả ZIP</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
